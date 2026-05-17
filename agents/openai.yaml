@@ -1,0 +1,4 @@
+interface:
+  display_name: "LOFTER Writer"
+  short_description: "Draft LOFTER fanfic and post packages"
+  default_prompt: "Use $lofter-writer to build a LOFTER-ready fanfic brief, draft, tags, and post package."
