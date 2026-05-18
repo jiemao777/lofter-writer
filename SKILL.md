@@ -64,7 +64,7 @@ Treat these as user-facing shortcuts. The user can say them literally, or ask fo
 
 ## Workflow
 
-## 1. Start Or Resume
+### 1. Start Or Resume
 
 For `~new`, collect or infer:
 
@@ -86,7 +86,7 @@ If a work folder exists, read:
 
 Then continue instead of restarting the concept phase.
 
-## 2. Route By Feeling, Not Jargon
+### 2. Route By Feeling, Not Jargon
 
 Do not force the user to choose a format name unless they already know what they want.
 
@@ -105,7 +105,7 @@ Example:
 - "I want emotional pull and inner tension" -> letter/diary/multi-POV
 - "I want short, hot, fast engagement" -> forum/chat/segment-based format
 
-## 3. Build The Story Brief
+### 3. Build The Story Brief
 
 Write or update `story-brief.md` before large drafting. Keep it compact and concrete:
 
@@ -119,7 +119,7 @@ Write or update `story-brief.md` before large drafting. Keep it compact and conc
 
 If canon details are uncertain, say so and keep the scene detail soft instead of inventing fake precision.
 
-## 4. Draft In Chunks
+### 4. Draft In Chunks
 
 Prefer controlled chunks over one huge dump.
 
@@ -141,7 +141,7 @@ Default drafting rules:
 
 For long drafts, save progress into the current work folder after each major section.
 
-## 5. Package For LOFTER
+### 5. Package For LOFTER
 
 Generate a post package into `post-package.md` with:
 
@@ -155,7 +155,7 @@ Generate a post package into `post-package.md` with:
 Use [lofter-platform.md](./references/lofter-platform.md) for platform-fit constraints.
 If the package raises safety, AI-labeling, monetization, or policy risk, also load [compliance-and-boundaries.md](./references/compliance-and-boundaries.md).
 
-## 6. Audit Before Finalizing
+### 6. Audit Before Finalizing
 
 Run the audit script before you present a draft as final:
 
