@@ -17,6 +17,13 @@ This skill builds LOFTER-ready fanfic projects with a repeatable workflow:
 
 Use this skill for writing and packaging. Do not assume it should drive the LOFTER website directly unless the user explicitly asks for live browser actions.
 
+Load the deeper references only when they help:
+
+- [drafting-workflow.md](./references/drafting-workflow.md) for end-to-end planning, continuation, revision, and publish-pack flows
+- [writing-mode-playbooks.md](./references/writing-mode-playbooks.md) when choosing or executing a concrete format such as forum thread, chat log, reaction, identity reveal, or serial
+- [quality-rubric.md](./references/quality-rubric.md) for structured review or polishing
+- [compliance-and-boundaries.md](./references/compliance-and-boundaries.md) when the request touches AI disclosure, moderation, sensitive content, real people, copyright, or monetization
+
 ## Quick Start
 
 When this skill is triggered, first decide whether the user is:
@@ -84,6 +91,7 @@ Then continue instead of restarting the concept phase.
 Do not force the user to choose a format name unless they already know what they want.
 
 Map reader intent to formats using [mode-routing.md](./references/mode-routing.md).
+When the user has picked a format or needs execution guidance, use [writing-mode-playbooks.md](./references/writing-mode-playbooks.md).
 
 Default behavior:
 
@@ -145,6 +153,7 @@ Generate a post package into `post-package.md` with:
 - optional end CTA
 
 Use [lofter-platform.md](./references/lofter-platform.md) for platform-fit constraints.
+If the package raises safety, AI-labeling, monetization, or policy risk, also load [compliance-and-boundaries.md](./references/compliance-and-boundaries.md).
 
 ## 6. Audit Before Finalizing
 
@@ -163,6 +172,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-d
 Use the output as a heuristic gate, not as absolute truth. Fix high-signal issues first, then re-run if the draft changed materially.
 
 For rewrite guidance, use [quality-rules.md](./references/quality-rules.md).
+For broader editorial review, use [quality-rubric.md](./references/quality-rubric.md).
 
 ## Tag Rules
 
@@ -194,6 +204,10 @@ Do not invent analytics. If the file lacks numbers, say what is missing and what
 - `references/lofter-platform.md`: official public platform facts and how to use them
 - `references/mode-routing.md`: feeling-to-format routing
 - `references/quality-rules.md`: anti-AI-smell and cleanup guidance
+- `references/drafting-workflow.md`: full writing workflow from intake to publish pack
+- `references/writing-mode-playbooks.md`: format-specific execution guidance
+- `references/quality-rubric.md`: structured review and revision rubric
+- `references/compliance-and-boundaries.md`: publication safety, AI disclosure, and policy boundaries
 - `scripts/init-project.ps1`: bootstrap project files and work folders
 - `scripts/audit-draft.ps1`: rule-based draft audit
 - `assets/templates/`: markdown templates copied by the init script
@@ -204,3 +218,4 @@ Do not invent analytics. If the file lacks numbers, say what is missing and what
 - Do not promise current monetization thresholds unless verified live.
 - Do not treat the rule-based audit as a literary judge.
 - Do not switch IP/CP focus mid-project unless the user explicitly wants a pivot.
+- Do not help bypass moderation, hide AI assistance, or mislead readers about generated content.
