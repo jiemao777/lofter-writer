@@ -2,7 +2,7 @@
 
 Use this file when you need platform-fit facts rather than literary guidance. Platform rules and monetization conditions can change; tell the user to verify current in-app terms before relying on revenue or eligibility details.
 
-Sources checked on 2026-05-02:
+Sources checked on 2026-07-06:
 
 - LOFTER community norms: `https://www.lofter.com/front/homesite/agreement/community-norms`
 - NetEase LOFTER service agreement: `https://www.lofter.com/agreement`
@@ -12,14 +12,17 @@ Sources checked on 2026-05-02:
 - LOFTER algorithm service explanation: `https://www.lofter.com/cms/150517/algorithm.html`
 - LOFTER intellectual property page: `https://www.lofter.com/CreativeCommons`
 - LOFTER infringement complaint guide: `https://www.lofter.com/antitorts`
+- LOFTER App Store listing: `https://apps.apple.com/tz/app/%E7%BD%91%E6%98%93lofter/id494514224`
 
 ## What Is Officially Supported
 
 - LOFTER presents itself as a community for publishing, sharing, responding to, and discovering interest-based content.
-- The web editor supports text, images, music, video, and long articles; the app supports common mobile publishing flows.
+- The beginner guide says the mobile app supports image, video, text, and music uploads; the web editor supports text, image, music, video, and long article publishing.
+- The App Store listing describes LOFTER as supporting image, text, and short-video publication, with tags and collections helping distribution and organization.
 - The beginner page encourages interaction through likes, comments, recommendations/reposts, sharing, private messages, and questions.
 - The community norms prohibit illegal, harmful, privacy-infringing, repeated/spammy, harassing, misleading, and order-disrupting information, including behavior that disrupts tags, comments, and private messages.
 - The community norms specifically warn against using AI or other technology to generate or spread pornographic, vulgar, or infringing content, and against AI/edited/old-news manipulation that creates false information.
+- The community norms add an AIGC-specific rule set: AI-assisted text, image, or video must be clearly marked with `#AI生成#` or `#AI辅助#` in title, body, or tag area and should use LOFTER's creator declaration when available.
 - The service agreement says users must not use deep learning, virtual reality, generative AI, or similar technologies to make, upload, publish, or spread legally prohibited false news information, or pass generated/synthetic content off as real or natural content.
 - The gift service terms describe gifts as encouragement for creators and allow creators to set return gifts, while requiring compliance with LOFTER service rules.
 - The algorithm explanation says recommendation can consider interaction and tag-interest similarity. Search can use creator-added tags and model-extracted tags, and creator-added tags are generally in the 1-10 range.
@@ -46,6 +49,7 @@ Important etiquette:
 - Some communities dislike CP posts entering single-character tags. Mention this as a check, not an absolute rule.
 - Do not overload unrelated hot tags. Misleading tags can annoy readers and may be treated as platform disruption.
 - Prefer a compact set of accurate tags. The official algorithm note mentions creator-added tags generally in the 1-10 range.
+- Remember that LOFTER may also use machine-extracted tags. The visible tag set should still be accurate and legible to humans, not only optimized for keyword coverage.
 
 ### 2. Keep Packaging Compact
 
@@ -88,5 +92,6 @@ LOFTER's public rules and agreements require transparent handling of generated o
 
 - Add an AI note when AI materially assisted writing, editing, images, or video.
 - Use platform-provided declaration controls when available.
-- Include tags such as `#AI生成#` or `#AI辅助#` when the platform or current community rule calls for them.
+- Include tags such as `#AI生成#` or `#AI辅助#` when AI materially generated or assisted the post.
+- Place the disclosure where a reader can see it before engaging deeply: title area, opening note, body note, or tag area depending on the post shape.
 - Do not hide AI assistance, perform AI "washing" of others' works, flood tag pages with low-quality AI posts, or train on community content without authorization.

@@ -25,6 +25,7 @@ It is built for text-first workflows: help the writer choose a format, keep a wo
 | `~title` | Generate title options |
 | `~tag` | Build a deliberate tag set |
 | `~post` | Package the final LOFTER post |
+| `~publish-check` | Check disclosure, tags, rights, and monetization risk |
 | `~audit` | Run the rule-based draft audit |
 | `~review` | Review outcome data from `works-log.md` |
 | `~adapt` | Adapt the same story core to another platform voice |
@@ -41,6 +42,7 @@ SKILL.md
 
 - `SKILL.md` keeps the core workflow concise.
 - `references/` holds deeper guidance for platform rules, formats, quality, workflow, and compliance.
+- `references/publishing-checklist.md` is the last stop before a post goes live.
 - `assets/templates/` provides reusable markdown starters for projects and works.
 - `scripts/` includes project initialization and a lightweight draft audit.
 
@@ -62,6 +64,12 @@ Audit a draft before final packaging:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File ".\scripts\audit-draft.ps1" -Path ".\works\my-work\draft.md"
+```
+
+Audit a final post package:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File ".\scripts\audit-package.ps1" -Path ".\works\my-work\post-package.md" -AiAssisted
 ```
 
 ## Design Notes

@@ -4,14 +4,15 @@ Use this file whenever the request touches platform review, AI disclosure, sensi
 
 ## Sources
 
-Checked on 2026-05-02:
+Checked on 2026-07-06:
 
 - LOFTER community norms: `https://www.lofter.com/front/homesite/agreement/community-norms`
 - NetEase LOFTER service agreement: `https://www.lofter.com/agreement`
 - LOFTER gift service terms: `https://www.lofter.com/front/homesite/agreement/gift-service`
 - LOFTER intellectual property page: `https://www.lofter.com/CreativeCommons`
 - LOFTER infringement complaint guide: `https://www.lofter.com/antitorts`
-- China government notice on AI-generated/synthetic content labeling, effective 2025-09-01: `https://www.gov.cn/lianbo/bumen/202503/content_7014283.htm`
+- CAC notice on AI-generated/synthetic content labeling, effective 2025-09-01: `https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm`
+- Full text mirror of the AI-generated/synthetic content labeling measures: `https://www.spp.gov.cn/spp/tt/202503/t20250314_690508.shtml`
 - MIIT page for Interim Measures for Generative AI Services, effective 2023-08-15: `https://wap.miit.gov.cn/gyhxxhb/jgsj/cyzcyfgs/bmgz/xxtxl/art/2023/art_4248f433b62143d8a0222a7db8873822.html`
 
 ## Hard Boundaries
@@ -47,7 +48,9 @@ As of the 2025 AI-generated/synthetic content labeling rules in China, creators 
 
 - Do not remove, hide, or alter AI labels or metadata.
 - If a platform provides an AI-generated content label, use it honestly.
-- For LOFTER, include `#AI生成#` or `#AI辅助#` when AI materially generated or assisted the work and current platform guidance requires it.
+- For LOFTER, include `#AI生成#` or `#AI辅助#` when AI materially generated or assisted the work, and use LOFTER's creator declaration when available.
+- For text, put the disclosure in a visible start, end, title-area, body-note, or tag-area position. For images, videos, audio, or virtual scenes, do not strip embedded labels or watermarks.
+- If posting generated/synthetic content through a network content service, the national labeling measures require the user to actively declare and use the service's labeling function.
 - If AI materially generated text, recommend a simple disclosure where appropriate.
 - For fanwork, do not claim official authorship or canon status.
 
@@ -61,6 +64,17 @@ Fanwork often depends on community tolerance and platform rules. Keep advice con
 - For monetization, remind the user that paid fanwork can carry extra copyright risk and platform-specific limits.
 - For commissioned or paid extras, recommend original transformative content rather than copied canon material.
 - For LOFTER gifts or paid return gifts, keep works and extras original or authorized, and do not use the feature for crowdfunding, gambling, product sales, or unrelated inducements.
+- If a work includes borrowed text, images, video, screenshots, translation, remix, or another creator's idea, ask for the authorization and attribution path before recommending publication or gifts.
+
+## Monetization And Gifts
+
+Keep gift advice conservative:
+
+- Do not promise activation, exposure, income, withdrawal, or settlement results.
+- Do not advise using gifts for crowdfunding, donations, lotteries, gambling, product sales, or unrelated inducements.
+- Do not hide essential context, warnings, or required disclosure behind paid return gifts.
+- Current gift terms mention monthly withdrawal windows and a minimum withdrawal threshold, but tell the user to verify the in-app rule before planning revenue.
+- If a paid/return-gift work is fanwork, mention the extra copyright and authorization risk before suggesting monetization.
 
 ## Sensitive Content
 
@@ -79,4 +93,5 @@ Before publishing, check:
 - Are minors, real people, private information, and sexual content handled safely?
 - Does the title or summary mislead readers?
 - Is monetization advice phrased as uncertain and rule-dependent?
+- Are borrowed materials, screenshots, translations, remix elements, and paid extras authorized or clearly credited?
 - Does any part attempt to exploit platform loopholes?

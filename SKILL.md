@@ -1,6 +1,6 @@
 ---
 name: lofter-writer
-description: Create and operate LOFTER-oriented fanfic projects. Use when the user wants to brainstorm, outline, draft, continue, revise, audit, tag, package, or review fanfiction for LOFTER, especially for prompts involving fanfic, CP, IP, forum-style formats, post packages, tag strategy, works-log, or command-style requests like ~new and ~tag.
+description: Create and operate LOFTER-oriented fanfic projects. Use when the user wants to brainstorm, outline, draft, continue, revise, audit, tag, package, publish-check, or review fanfiction for LOFTER, especially for prompts involving fanfic, CP, IP, forum-style formats, post packages, tag strategy, AI disclosure, works-log, or command-style requests like ~new and ~tag.
 ---
 
 # LOFTER Writer
@@ -22,6 +22,7 @@ Load the deeper references only when they help:
 - [drafting-workflow.md](./references/drafting-workflow.md) for end-to-end planning, continuation, revision, and publish-pack flows
 - [writing-mode-playbooks.md](./references/writing-mode-playbooks.md) when choosing or executing a concrete format such as forum thread, chat log, reaction, identity reveal, or serial
 - [quality-rubric.md](./references/quality-rubric.md) for structured review or polishing
+- [publishing-checklist.md](./references/publishing-checklist.md) before final publication packaging, tag strategy, AI disclosure, gifts, or monetization
 - [compliance-and-boundaries.md](./references/compliance-and-boundaries.md) when the request touches AI disclosure, moderation, sensitive content, real people, copyright, or monetization
 
 ## Quick Start
@@ -58,6 +59,7 @@ Treat these as user-facing shortcuts. The user can say them literally, or ask fo
 - `~title`: generate title options that fit LOFTER discovery and tone.
 - `~tag`: generate a tag set and explain why each group is there.
 - `~post`: generate a LOFTER post package: title, summary, warnings, tags, and CTA.
+- `~publish-check`: check a final package for tag fit, disclosure, sensitive content, rights, and monetization risk.
 - `~audit`: run the rule-based draft audit before final packaging.
 - `~review`: analyze outcome data from `works-log.md` and suggest the next move.
 - `~adapt`: adapt the same core story into another platform voice only if the user asks.
@@ -153,11 +155,12 @@ Generate a post package into `post-package.md` with:
 - optional end CTA
 
 Use [lofter-platform.md](./references/lofter-platform.md) for platform-fit constraints.
+Use [publishing-checklist.md](./references/publishing-checklist.md) for final post packages, especially when the work is intended for live publication.
 If the package raises safety, AI-labeling, monetization, or policy risk, also load [compliance-and-boundaries.md](./references/compliance-and-boundaries.md).
 
 ### 6. Audit Before Finalizing
 
-Run the audit script before you present a draft as final:
+Run the draft audit script before you present a draft as final:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-draft.ps1" -Path ".\works\<slug>\draft.md"
@@ -173,6 +176,18 @@ Use the output as a heuristic gate, not as absolute truth. Fix high-signal issue
 
 For rewrite guidance, use [quality-rules.md](./references/quality-rules.md).
 For broader editorial review, use [quality-rubric.md](./references/quality-rubric.md).
+
+For `~publish-check`, run the package audit on `post-package.md`:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-package.ps1" -Path ".\works\<slug>\post-package.md"
+```
+
+If AI materially assisted the work or monetization is being discussed, pass the relevant flags:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-package.ps1" -Path ".\works\<slug>\post-package.md" -AiAssisted -Monetized
+```
 
 ## Tag Rules
 
@@ -207,9 +222,11 @@ Do not invent analytics. If the file lacks numbers, say what is missing and what
 - `references/drafting-workflow.md`: full writing workflow from intake to publish pack
 - `references/writing-mode-playbooks.md`: format-specific execution guidance
 - `references/quality-rubric.md`: structured review and revision rubric
+- `references/publishing-checklist.md`: final publication package checklist
 - `references/compliance-and-boundaries.md`: publication safety, AI disclosure, and policy boundaries
 - `scripts/init-project.ps1`: bootstrap project files and work folders
 - `scripts/audit-draft.ps1`: rule-based draft audit
+- `scripts/audit-package.ps1`: rule-based LOFTER post package audit
 - `assets/templates/`: markdown templates copied by the init script
 
 ## Boundaries

@@ -16,6 +16,10 @@
 
 - 
 
+## AI Disclosure
+
+- 
+
 ## Tags
 
 - CP:
@@ -24,6 +28,14 @@
 - format:
 - tone or setting:
 
+## Collection
+
+- 
+
 ## CTA
+
+- 
+
+## Gift Or Monetization Notes
 
 - 
