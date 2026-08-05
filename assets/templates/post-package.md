@@ -34,6 +34,15 @@
 - Visible note: TBD
 - LOFTER creation declaration: TBD
 
+## Rights And Sources
+
+- Source IP credit:
+- Borrowed material and permission:
+
+## Gift Or Monetization Notes
+
+- Not applicable or specify current-rule and rights cautions
+
 ## Discussion Prompt
 
 - TBD

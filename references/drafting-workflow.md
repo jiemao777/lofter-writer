@@ -77,3 +77,4 @@ Prepare:
 - Accurate tags grouped by CP/character, IP/world, form, mood, and content
 - A discussion prompt that invites a real response without begging for engagement
 - AI disclosure and platform declaration reminder when AI materially assisted the work
+- Rights/source and gift/monetization notes when relevant

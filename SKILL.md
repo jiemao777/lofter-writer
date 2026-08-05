@@ -1,6 +1,6 @@
 ---
 name: lofter-writer
-description: Chinese LOFTER writing and publishing assistant for fanwork and original posts. Use when the user asks to brainstorm, outline, draft, continue, revise, polish, adapt, audit, title, tag, package, publish, or review LOFTER content; requests 同人文、原创、CP、论坛体、聊天体、观影体、掉马、甜文、虐文、喜剧、连载、续写、标题、标签、发布包、作品复盘; or needs help with characterization, canon continuity, pacing, platform fit, AI disclosure, copyright, or sensitive-content checks. Do not use to evade moderation or AI detection, conceal required labels, impersonate real people, scrape private content, or create illegal, exploitative, or sexual content involving minors.
+description: Chinese LOFTER writing and publishing assistant for fanwork and original posts. Use when the user asks to brainstorm, outline, draft, continue, revise, polish, adapt, audit, publish-check, title, tag, package, publish, or review LOFTER content; requests 同人文、原创、CP、论坛体、聊天体、观影体、掉马、甜文、虐文、喜剧、连载、续写、标题、标签、发布包、作品复盘; or needs help with characterization, canon continuity, pacing, platform fit, AI disclosure, copyright, or sensitive-content checks. Do not use to evade moderation or AI detection, conceal required labels, impersonate real people, scrape private content, or create illegal, exploitative, or sexual content involving minors.
 ---
 
 # LOFTER Writer
@@ -18,13 +18,13 @@ Create publication-ready Chinese LOFTER posts while preserving character voice, 
 
 ## Workflow
 
-1. Identify the requested artifact: idea, route, brief, outline, draft, continuation, revision, publish pack, audit, tag strategy, or performance review.
+1. Identify the requested artifact: idea, route, brief, outline, draft, continuation, revision, publish pack, audit, publish-check, tag strategy, or performance review.
 2. Collect or infer IP/world, characters or CP, relationship direction, desired feeling, target length, canon sensitivity, rating/boundaries, and posting goal.
 3. Read `references/drafting-workflow.md` for multi-step writing work. Read `references/writing-mode-playbooks.md` when selecting or executing a format.
 4. For long or repeated work, initialize a project and read the existing memory files before writing. For a short low-risk request, draft directly.
 5. Draft or revise using `references/quality-rubric.md`. Preserve deliberate roughness, humor, hesitation, and character-specific avoidance.
-6. Build `post-package.md` using `references/lofter-platform-notes.md`.
-7. Run the deterministic audit script. Then perform the model-based quality and compliance pass; the script is a linter, not a literary judge or AI detector.
+6. Build `post-package.md` using `references/lofter-platform-notes.md`, then use `references/publishing-checklist.md` for publication preflight.
+7. Run deterministic audits. Then perform the model-based quality and compliance pass; scripts are linters, not literary judges or AI detectors.
 8. Save changed continuity, unresolved hooks, and performance snapshots when the project is persistent.
 
 ## Commands
@@ -40,7 +40,8 @@ Treat these as optional shortcuts; equivalent natural-language requests work the
 - `~title`: provide focused title options with different tones.
 - `~tag`: provide a compact, etiquette-aware tag set.
 - `~post`: create the full LOFTER publish pack.
-- `~audit`: run deterministic lint, then review with the quality rubric.
+- `~audit`: lint the draft and package, then review with the quality rubric.
+- `~publish-check`: check disclosure, tags, rights, sensitive content, gifts, and monetization risk.
 - `~review`: compare like-aged performance snapshots and propose one controlled experiment.
 - `~adapt`: adapt the work to another platform only when explicitly requested.
 
@@ -66,13 +67,19 @@ Update only facts established by the user, canon sources, or the current draft. 
 
 ## Audit
 
-Run the audit before presenting publication-ready output:
+Run the combined audit before presenting publication-ready output:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-draft.ps1" -Path ".\works\<slug>\draft.md" -PostPackagePath ".\works\<slug>\post-package.md" -CharacterNames "NameA,NameB" -AiAssisted -Json
 ```
 
-Omit `-AiAssisted` only when AI did not materially assist the publishable content. Fix `error` findings before publication, inspect `warn` findings in context, and treat `note` findings as prompts for human judgment.
+For `~publish-check` without a draft, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-package.ps1" -Path ".\works\<slug>\post-package.md" -AiAssisted -Monetized -Json
+```
+
+Pass `-AiAssisted` when AI materially assisted publishable content and `-Monetized` when gifts, paid extras, commissions, or revenue are involved. Fix `error` findings before publication, inspect `warn` findings in context, and treat `note` findings as prompts for human judgment.
 
 ## Load References
 
@@ -80,5 +87,6 @@ Omit `-AiAssisted` only when AI did not materially assist the publishable conten
 - Read `references/writing-mode-playbooks.md` for forum, chat, viewing/reaction, identity reveal, daily sweet story, comedy, canon drama, or serial modes.
 - Read `references/quality-rubric.md` for review, revision, characterization, pacing, dialogue, scene grounding, and editorial specificity.
 - Read `references/lofter-platform-notes.md` for tags, titles, collections, interaction, gifts, timing, or platform-specific publishing.
+- Read `references/publishing-checklist.md` before final packaging or when checking tags, disclosure, rights, gifts, or monetization.
 - Read `references/compliance-and-boundaries.md` for AI disclosure, platform rules, minors, real people, copyright, monetization, or sensitive content.
 - Read `references/review-loop.md` for `~review`, works-log analysis, and controlled posting experiments.
