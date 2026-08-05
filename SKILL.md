@@ -1,206 +1,84 @@
 ---
 name: lofter-writer
-description: Create and operate LOFTER-oriented fanfic projects. Use when the user wants to brainstorm, outline, draft, continue, revise, audit, tag, package, or review fanfiction for LOFTER, especially for prompts involving fanfic, CP, IP, forum-style formats, post packages, tag strategy, works-log, or command-style requests like ~new and ~tag.
+description: Chinese LOFTER writing and publishing assistant for fanwork and original posts. Use when the user asks to brainstorm, outline, draft, continue, revise, polish, adapt, audit, title, tag, package, publish, or review LOFTER content; requests 同人文、原创、CP、论坛体、聊天体、观影体、掉马、甜文、虐文、喜剧、连载、续写、标题、标签、发布包、作品复盘; or needs help with characterization, canon continuity, pacing, platform fit, AI disclosure, copyright, or sensitive-content checks. Do not use to evade moderation or AI detection, conceal required labels, impersonate real people, scrape private content, or create illegal, exploitative, or sexual content involving minors.
 ---
 
 # LOFTER Writer
 
-## Overview
+Create publication-ready Chinese LOFTER posts while preserving character voice, continuity, fandom etiquette, and platform boundaries.
 
-This skill builds LOFTER-ready fanfic projects with a repeatable workflow:
+## Core Rules
 
-1. start or resume a work
-2. route the story into the right format
-3. draft in controllable chunks
-4. package the final post for LOFTER
-5. audit for obvious AI-smell and platform-fit issues
-
-Use this skill for writing and packaging. Do not assume it should drive the LOFTER website directly unless the user explicitly asks for live browser actions.
-
-## Quick Start
-
-When this skill is triggered, first decide whether the user is:
-
-- starting a fresh work
-- resuming an existing work
-- asking for a specific artifact such as title, outline, body draft, tags, or a post package
-- asking for review or post-mortem on existing data
-
-If the workspace does not already have `works-log.md`, initialize the project structure first:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\init-project.ps1" -ProjectRoot .
-```
-
-If the user is starting a specific work, create a work folder at the same time:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\init-project.ps1" -ProjectRoot . -WorkSlug "my-work"
-```
-
-## Command Surface
-
-Treat these as user-facing shortcuts. The user can say them literally, or ask for the same thing in plain language.
-
-- `~new`: start or resume a work. If the user has no idea, offer 3 directions for the same IP/CP.
-- `~route`: map the user's desired feeling to 1-3 candidate formats with tradeoffs.
-- `~brief`: produce or update the story brief.
-- `~outline`: produce a beat outline or chapter outline.
-- `~draft`: write the requested section or one-shot body.
-- `~continue`: continue from the latest saved progress without repeating setup.
-- `~title`: generate title options that fit LOFTER discovery and tone.
-- `~tag`: generate a tag set and explain why each group is there.
-- `~post`: generate a LOFTER post package: title, summary, warnings, tags, and CTA.
-- `~audit`: run the rule-based draft audit before final packaging.
-- `~review`: analyze outcome data from `works-log.md` and suggest the next move.
-- `~adapt`: adapt the same core story into another platform voice only if the user asks.
+- Prefer Chinese output unless the user asks otherwise.
+- Collect only information needed for the next useful step. Infer low-risk details and mark uncertainty instead of interrogating the user.
+- Treat canon facts, user boundaries, relationship direction, and fandom tag customs as constraints.
+- Do not promise traffic, income, approval, or detection outcomes.
+- Reframe requests to remove "AI flavor" as editorial specificity and voice work, never as detection evasion.
+- Do not operate the LOFTER website unless the user explicitly requests browser actions.
 
 ## Workflow
 
-## 1. Start Or Resume
+1. Identify the requested artifact: idea, route, brief, outline, draft, continuation, revision, publish pack, audit, tag strategy, or performance review.
+2. Collect or infer IP/world, characters or CP, relationship direction, desired feeling, target length, canon sensitivity, rating/boundaries, and posting goal.
+3. Read `references/drafting-workflow.md` for multi-step writing work. Read `references/writing-mode-playbooks.md` when selecting or executing a format.
+4. For long or repeated work, initialize a project and read the existing memory files before writing. For a short low-risk request, draft directly.
+5. Draft or revise using `references/quality-rubric.md`. Preserve deliberate roughness, humor, hesitation, and character-specific avoidance.
+6. Build `post-package.md` using `references/lofter-platform-notes.md`.
+7. Run the deterministic audit script. Then perform the model-based quality and compliance pass; the script is a linter, not a literary judge or AI detector.
+8. Save changed continuity, unresolved hooks, and performance snapshots when the project is persistent.
 
-For `~new`, collect or infer:
+## Commands
 
-- `IP`
-- `CP` or character focus
-- core hook or situation
-- desired feeling
-- target length
-- content boundaries or red lines
+Treat these as optional shortcuts; equivalent natural-language requests work the same way.
 
-If the user is vague, do not ask for abstract literary terms. Ask or infer from "what feeling do you want" and "how fast should this hit".
+- `~new`: start or resume a work; offer three distinct directions if the user has no premise.
+- `~route`: recommend one format and up to two alternatives with tradeoffs.
+- `~brief`: create or update the story brief and constraints.
+- `~outline`: create scene beats or a chapter plan.
+- `~draft`: write the requested section or complete short post.
+- `~continue`: continue from saved state without repeating setup.
+- `~title`: provide focused title options with different tones.
+- `~tag`: provide a compact, etiquette-aware tag set.
+- `~post`: create the full LOFTER publish pack.
+- `~audit`: run deterministic lint, then review with the quality rubric.
+- `~review`: compare like-aged performance snapshots and propose one controlled experiment.
+- `~adapt`: adapt the work to another platform only when explicitly requested.
 
-If a work folder exists, read:
+## Project Memory
 
-- `works-log.md`
-- the current work's `story-brief.md`
-- `outline.md`
-- `draft.md`
-
-Then continue instead of restarting the concept phase.
-
-## 2. Route By Feeling, Not Jargon
-
-Do not force the user to choose a format name unless they already know what they want.
-
-Map reader intent to formats using [mode-routing.md](./references/mode-routing.md).
-
-Default behavior:
-
-- offer 1 recommended format first
-- offer up to 2 alternates
-- explain the tradeoff in plain language
-
-Example:
-
-- "I want something sweet and easy to read" -> chat/forum/reaction format
-- "I want emotional pull and inner tension" -> letter/diary/multi-POV
-- "I want short, hot, fast engagement" -> forum/chat/segment-based format
-
-## 3. Build The Story Brief
-
-Write or update `story-brief.md` before large drafting. Keep it compact and concrete:
-
-- premise
-- canon anchors
-- emotional promise
-- conflict engine
-- ending mode
-- format choice
-- do-not-write list
-
-If canon details are uncertain, say so and keep the scene detail soft instead of inventing fake precision.
-
-## 4. Draft In Chunks
-
-Prefer controlled chunks over one huge dump.
-
-Recommended order:
-
-1. title directions
-2. opening hook
-3. outline
-4. section-by-section draft
-5. cleanup pass
-
-Default drafting rules:
-
-- keep the format consistent once chosen
-- respect canon anchors from the brief
-- keep dialogue attribution readable
-- avoid over-explaining subtext
-- vary sentence cadence and paragraph size
-
-For long drafts, save progress into the current work folder after each major section.
-
-## 5. Package For LOFTER
-
-Generate a post package into `post-package.md` with:
-
-- final title
-- one-sentence hook
-- short summary
-- warnings or audience notes when needed
-- tag set
-- optional end CTA
-
-Use [lofter-platform.md](./references/lofter-platform.md) for platform-fit constraints.
-
-## 6. Audit Before Finalizing
-
-Run the audit script before you present a draft as final:
+For multi-chapter or repeated work, run:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-draft.ps1" -Path ".\works\<slug>\draft.md"
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\init-project.ps1" -ProjectRoot "." -WorkSlug "my-work" -ProjectTitle "collection-name" -Ip "source-work" -Cp "ship-or-focus"
 ```
 
-If character names are known, pass them:
+Read project memory in this order before continuing:
+
+1. `canon-bible.md`
+2. `character-voice.md`
+3. `works-log.md`
+4. `works/<slug>/story-brief.md`
+5. `works/<slug>/continuity.md`
+6. `works/<slug>/outline.md`
+7. `works/<slug>/draft.md`
+
+Update only facts established by the user, canon sources, or the current draft. Mark uncertain details instead of converting guesses into canon.
+
+## Audit
+
+Run the audit before presenting publication-ready output:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-draft.ps1" -Path ".\works\<slug>\draft.md" -CharacterNames "NameA,NameB"
+powershell -NoProfile -ExecutionPolicy Bypass -File "<skill-dir>\scripts\audit-draft.ps1" -Path ".\works\<slug>\draft.md" -PostPackagePath ".\works\<slug>\post-package.md" -CharacterNames "NameA,NameB" -AiAssisted -Json
 ```
 
-Use the output as a heuristic gate, not as absolute truth. Fix high-signal issues first, then re-run if the draft changed materially.
+Omit `-AiAssisted` only when AI did not materially assist the publishable content. Fix `error` findings before publication, inspect `warn` findings in context, and treat `note` findings as prompts for human judgment.
 
-For rewrite guidance, use [quality-rules.md](./references/quality-rules.md).
+## Load References
 
-## Tag Rules
-
-Default LOFTER tag output should be grouped as:
-
-- CP tags
-- character tags
-- IP tags
-- format tags
-- tone or setting tags
-
-Keep the set deliberate. Do not spray unrelated tags for reach.
-
-When the user asks for the latest official product rules, monetization thresholds, or platform policy changes, re-check live official pages instead of trusting cached knowledge.
-
-## Review Loop
-
-When the user asks for `~review`, read `works-log.md` and summarize:
-
-- which format got the best response
-- which tags repeat across better-performing works
-- whether the opening or title pattern correlates with clicks
-- one concrete next experiment
-
-Do not invent analytics. If the file lacks numbers, say what is missing and what can still be inferred.
-
-## Files In This Skill
-
-- `references/lofter-platform.md`: official public platform facts and how to use them
-- `references/mode-routing.md`: feeling-to-format routing
-- `references/quality-rules.md`: anti-AI-smell and cleanup guidance
-- `scripts/init-project.ps1`: bootstrap project files and work folders
-- `scripts/audit-draft.ps1`: rule-based draft audit
-- `assets/templates/`: markdown templates copied by the init script
-
-## Boundaries
-
-- This skill focuses on text-first LOFTER workflows.
-- Do not promise current monetization thresholds unless verified live.
-- Do not treat the rule-based audit as a literary judge.
-- Do not switch IP/CP focus mid-project unless the user explicitly wants a pivot.
+- Read `references/drafting-workflow.md` for planning, drafting, continuation, revision, or a full publish pack.
+- Read `references/writing-mode-playbooks.md` for forum, chat, viewing/reaction, identity reveal, daily sweet story, comedy, canon drama, or serial modes.
+- Read `references/quality-rubric.md` for review, revision, characterization, pacing, dialogue, scene grounding, and editorial specificity.
+- Read `references/lofter-platform-notes.md` for tags, titles, collections, interaction, gifts, timing, or platform-specific publishing.
+- Read `references/compliance-and-boundaries.md` for AI disclosure, platform rules, minors, real people, copyright, monetization, or sensitive content.
+- Read `references/review-loop.md` for `~review`, works-log analysis, and controlled posting experiments.

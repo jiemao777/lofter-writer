@@ -1,18 +1,24 @@
 # Outline: {{WORK_SLUG}}
 
-## Opening Hook
+## Opening State
 
-- 
+- Situation:
+- Character wants:
+- Reader question:
 
 ## Beats
 
-1. 
-2. 
-3. 
-4. 
-5. 
+| beat | external change | relationship change | knowledge change | scene anchor |
+| ---: | --- | --- | --- | --- |
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
+| 4 | | | | |
+| 5 | | | | |
 
-## Payoff
+## Landing
 
-- emotional payoff:
-- image or line to land on:
+- Emotional payoff:
+- Consequence:
+- Final image or line:
+- Next-chapter hook:

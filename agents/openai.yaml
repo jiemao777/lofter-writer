@@ -1,4 +1,4 @@
 interface:
-  display_name: "LOFTER Writer"
-  short_description: "Draft LOFTER fanfic and post packages"
-  default_prompt: "Use $lofter-writer to build a LOFTER-ready fanfic brief, draft, tags, and post package."
+  display_name: "LOFTER Postsmith"
+  short_description: "规划、创作、续写并审校 LOFTER 同人及原创文章"
+  default_prompt: "Use $lofter-writer to create a continuity-aware Chinese LOFTER draft and compliant publish pack."

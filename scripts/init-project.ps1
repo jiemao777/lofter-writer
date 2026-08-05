@@ -1,6 +1,9 @@
 param(
     [string]$ProjectRoot = ".",
     [string]$WorkSlug = "",
+    [string]$ProjectTitle = "",
+    [string]$Ip = "",
+    [string]$Cp = "",
     [switch]$Force
 )
 
@@ -15,24 +18,6 @@ function Resolve-AbsolutePath {
     }
 
     return [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $PathValue))
-}
-
-function Set-TemplateFile {
-    param(
-        [string]$TemplatePath,
-        [string]$DestinationPath,
-        [hashtable]$Replacements
-    )
-
-    if ((Test-Path -LiteralPath $DestinationPath) -and (-not $Force)) {
-        return
-    }
-
-    $content = Get-Content -LiteralPath $TemplatePath -Raw
-    foreach ($key in $Replacements.Keys) {
-        $content = $content.Replace($key, $Replacements[$key])
-    }
-    Set-Content -LiteralPath $DestinationPath -Value $content -Encoding UTF8
 }
 
 function Normalize-Slug {
@@ -54,60 +39,77 @@ function Normalize-Slug {
     return $clean
 }
 
+function Write-TemplateFile {
+    param(
+        [string]$TemplatePath,
+        [string]$DestinationPath,
+        [hashtable]$Replacements
+    )
+
+    if ((Test-Path -LiteralPath $DestinationPath) -and (-not $Force)) {
+        return [pscustomobject]@{ path = $DestinationPath; written = $false }
+    }
+
+    $content = Get-Content -LiteralPath $TemplatePath -Raw -Encoding UTF8
+    foreach ($key in $Replacements.Keys) {
+        $content = $content.Replace($key, [string]$Replacements[$key])
+    }
+
+    Set-Content -LiteralPath $DestinationPath -Value $content -Encoding UTF8
+    return [pscustomobject]@{ path = $DestinationPath; written = $true }
+}
+
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $skillDir = Split-Path -Parent $scriptDir
 $templateDir = Join-Path $skillDir "assets\templates"
 $root = Resolve-AbsolutePath $ProjectRoot
+$slug = Normalize-Slug $WorkSlug
 
 New-Item -ItemType Directory -Force -Path $root | Out-Null
-
-$folders = @(
-    (Join-Path $root "works"),
-    (Join-Path $root "exports"),
-    (Join-Path $root "research")
-)
-
-foreach ($folder in $folders) {
-    New-Item -ItemType Directory -Force -Path $folder | Out-Null
+foreach ($folderName in @("works", "exports", "research")) {
+    New-Item -ItemType Directory -Force -Path (Join-Path $root $folderName) | Out-Null
 }
 
-Set-TemplateFile `
-    -TemplatePath (Join-Path $templateDir "works-log.md") `
-    -DestinationPath (Join-Path $root "works-log.md") `
-    -Replacements @{}
+if ([string]::IsNullOrWhiteSpace($ProjectTitle)) {
+    $ProjectTitle = Split-Path -Leaf $root
+}
 
-$created = @()
-$created += (Join-Path $root "works-log.md")
+$replacements = @{
+    "{{PROJECT_TITLE}}" = $ProjectTitle
+    "{{IP}}" = if ([string]::IsNullOrWhiteSpace($Ip)) { "TBD" } else { $Ip }
+    "{{CP}}" = if ([string]::IsNullOrWhiteSpace($Cp)) { "TBD" } else { $Cp }
+    "{{WORK_SLUG}}" = if ([string]::IsNullOrWhiteSpace($slug)) { "TBD" } else { $slug }
+}
 
-if (-not [string]::IsNullOrWhiteSpace($WorkSlug)) {
-    $slug = Normalize-Slug $WorkSlug
+$written = [System.Collections.Generic.List[string]]::new()
+$skipped = [System.Collections.Generic.List[string]]::new()
+
+foreach ($templateName in @("works-log.md", "canon-bible.md", "character-voice.md")) {
+    $result = Write-TemplateFile `
+        -TemplatePath (Join-Path $templateDir $templateName) `
+        -DestinationPath (Join-Path $root $templateName) `
+        -Replacements $replacements
+
+    if ($result.written) { $written.Add($result.path) } else { $skipped.Add($result.path) }
+}
+
+if (-not [string]::IsNullOrWhiteSpace($slug)) {
     $workDir = Join-Path (Join-Path $root "works") $slug
     New-Item -ItemType Directory -Force -Path $workDir | Out-Null
 
-    $replacements = @{
-        "{{WORK_SLUG}}" = $slug
-    }
-
-    $templateMap = @{
-        "story-brief.md" = "story-brief.md"
-        "outline.md" = "outline.md"
-        "draft.md" = "draft.md"
-        "post-package.md" = "post-package.md"
-    }
-
-    foreach ($templateName in $templateMap.Keys) {
-        $destinationName = $templateMap[$templateName]
-        $destinationPath = Join-Path $workDir $destinationName
-        Set-TemplateFile `
+    foreach ($templateName in @("story-brief.md", "outline.md", "continuity.md", "draft.md", "post-package.md")) {
+        $result = Write-TemplateFile `
             -TemplatePath (Join-Path $templateDir $templateName) `
-            -DestinationPath $destinationPath `
+            -DestinationPath (Join-Path $workDir $templateName) `
             -Replacements $replacements
-        $created += $destinationPath
+
+        if ($result.written) { $written.Add($result.path) } else { $skipped.Add($result.path) }
     }
 }
 
 [pscustomobject]@{
     projectRoot = $root
-    workSlug = if ([string]::IsNullOrWhiteSpace($WorkSlug)) { $null } else { $slug }
-    created = $created
+    workSlug = if ([string]::IsNullOrWhiteSpace($slug)) { $null } else { $slug }
+    created = $written
+    skipped = $skipped
 } | ConvertTo-Json -Depth 4

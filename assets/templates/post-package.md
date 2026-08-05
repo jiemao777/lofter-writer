@@ -2,28 +2,38 @@
 
 ## Title
 
-- 
+- TBD
 
 ## Hook
 
-- 
+- TBD
 
 ## Summary
 
-- 
+- TBD
 
-## Warnings
+## Content Notes
 
-- 
+- None or specify material warnings
+
+## Collection
+
+- Name:
+- Chapter number:
 
 ## Tags
 
-- CP:
-- characters:
-- IP:
-- format:
-- tone or setting:
+- CP/relationship:
+- Characters:
+- IP/world:
+- Form:
+- Mood/setting/content:
 
-## CTA
+## AI Disclosure
 
-- 
+- Visible note: TBD
+- LOFTER creation declaration: TBD
+
+## Discussion Prompt
+
+- TBD

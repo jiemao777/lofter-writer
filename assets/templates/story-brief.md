@@ -2,27 +2,27 @@
 
 ## Core
 
-- IP:
-- CP or focus:
-- format:
-- target length:
-- rating or boundary:
+- IP/world: {{IP}}
+- CP or focus: {{CP}}
+- Relationship direction:
+- Format:
+- Target length:
+- Rating and boundaries:
+- Canon sensitivity:
+- AI assistance for publishable content: TBD
 
-## Premise
+## Promise
 
-- hook:
-- conflict engine:
-- emotional promise:
-- ending mode:
+- One-sentence premise:
+- Reader promise:
+- Conflict engine:
+- Emotional curve:
+- Ending mode:
 
-## Canon Anchors
+## Constraints
 
-- must keep:
-- can remix:
-- uncertain details to keep soft:
-
-## Do Not Write
-
-- banned tropes:
-- banned phrases:
-- continuity risks:
+- Canon facts to preserve:
+- Deliberate AU changes:
+- Uncertain details to keep soft:
+- Fandom tag customs:
+- Do-not-write list:

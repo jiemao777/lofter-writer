@@ -1,5 +1,7 @@
 # Draft: {{WORK_SLUG}}
 
+Status: working
+
 ## Opening
 
 
@@ -7,4 +9,3 @@
 
 
 ## Ending
-
